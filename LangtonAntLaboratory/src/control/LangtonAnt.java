@@ -11,14 +11,14 @@ public class LangtonAnt {
     
     static SimulationUniverse simulationUniverse;
     static HomeWindow homeWindow;
-    static boolean verbose = false;
+    static boolean verbose = false; //default verbosity
 
     public static void main(String[] args) {
         if (verbose == true) {
             System.out.println("Verbose run");
         } else {
             for (int i = 0; i < args.length; i++) {
-                if (args[i].equalsIgnoreCase("v")) {
+                if (args[i].equalsIgnoreCase("-v")) {
                     verbose = true;
                     System.out.println("Verbose run");
                 }
@@ -30,9 +30,9 @@ public class LangtonAnt {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
         }
 
-        simulationUniverse = SimulationUniverse.getInstance(10, 100);
-        simulationUniverse.getField().setWorldType(WorldType.CYCLIC);
-        homeWindow = new HomeWindow(simulationUniverse);
+        simulationUniverse = SimulationUniverse.getInstance(10, 100); //creating default simulation universe
+        simulationUniverse.getField().setWorldType(WorldType.CYCLIC); //setting up world type
+        homeWindow = new HomeWindow(simulationUniverse); //giving the sisplay area the universe to display
 
     }
 
