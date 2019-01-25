@@ -143,7 +143,7 @@ public class Dashboard extends javax.swing.JPanel {
     }
 
     public void addListenersToControllClass(ActionListener lis, ChangeListener clis) {
-        
+        //add all listeners to create action when something is performed on an object
         playButton.addActionListener(lis);
         stepButton.addActionListener(lis);
         pauseButton.addActionListener(lis);
@@ -202,6 +202,7 @@ public class Dashboard extends javax.swing.JPanel {
         modeComboBox.setActionCommand("somethingChangedInField");
     }
 
+    //default methods
     public void updateStepsCounterLabel(int ticks) {
         currentTickLabel.setText(Integer.toString(ticks));
     }
@@ -612,6 +613,7 @@ public class Dashboard extends javax.swing.JPanel {
     
     
 
+    //automatic created code by swing editor
   /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
