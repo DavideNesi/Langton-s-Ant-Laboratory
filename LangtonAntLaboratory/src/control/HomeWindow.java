@@ -16,7 +16,7 @@ import view.TopPanel;
 
 public final class HomeWindow extends JFrame implements ActionListener, ChangeListener {
 
-    Timer timer;
+    Timer timer; //used to manage the ticks
     FieldDisplayAreaWrapper simulationDisplay;
     Dashboard controlPanel;
     TopPanel topPanel;
@@ -33,6 +33,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
 
         su = s;
 
+        //creating the whole window
         topPanel = new TopPanel();
         controlPanel = new Dashboard(this);
         simulationDisplay = new FieldDisplayAreaWrapper(su);
@@ -64,6 +65,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         setVisible(true);
     }
 
+    //list of action performed on dashboard that triggers event in this control class
     @Override
     public void actionPerformed(ActionEvent e) {
         String id = e.getActionCommand();
@@ -113,19 +115,15 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
             case "savePressed":
                 savePressed();
                 break;
-
             case "somethingChangedInAnt":
                 somethingChangedInAnt();
                 break;
-
             case "deletePressed":
                 deletePressed();
                 break;
-
             case "somethingChangedInField":
                 somethingChangedInField();
                 break;
-
             default:
                 break;
         }
@@ -141,8 +139,9 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         }
     }
 
+    //method called after the step button is pressed
     public void oneTick() {
-        if (su.getActiveAntsCount() == 0) {
+    if (su.getActiveAntsCount() == 0) {
             JOptionPane.showMessageDialog(this, "Please add and save at least one Ant");
             return;
         }
@@ -156,6 +155,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         controlPanel.updateStepsCounterLabel(su.getTicks());
     }
 
+    //every tick of the simulation ants are checked to see if they hit the display borders
     public void tick() {
         if (su.tick()) {
             pause();
@@ -165,6 +165,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         controlPanel.updateStepsCounterLabel(su.getTicks());
     }
 
+    //pause the simulation
     public void pause() {
         timer.stop();
         su.setState(SimulationStatus.PAUSED);
@@ -204,6 +205,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         controlPanel.updateStepsCounterLabel(su.getTicks());
     }
 
+    //move the displayed simulation left
     public void left() {
         int currentFieldPixelSize = simulationDisplay.getCellDimension() * su.getField().getDimension();
         int maxPossibleOffset = -(currentFieldPixelSize / 10) * 8; //going right the offset is negative, so possible offsets are bigger than this value
@@ -221,6 +223,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         simulationDisplay.updateFieldDisplayArea();
     }
 
+    //move the displayed simulation right
     public void right() {
         int currentFieldPixelSize = simulationDisplay.getCellDimension() * su.getField().getDimension();
         int maxPossibleOffset = (currentFieldPixelSize / 10) * 8; //going left the offset is positive, so possible offsets are lower than this value
@@ -237,6 +240,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         simulationDisplay.updateFieldDisplayArea();
     }
 
+     //move the displayed simulation up
     public void up() {
         int currentFieldPixelSize = simulationDisplay.getCellDimension() * su.getField().getDimension();
         int maxPossibleOffset = -(currentFieldPixelSize / 10) * 8; //going right the offset is negative, so possible offsets are bigger than this value
@@ -253,6 +257,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         simulationDisplay.updateFieldDisplayArea();
     }
 
+    //move the displayed simulation down
     public void down() {
         int currentFieldPixelSize = simulationDisplay.getCellDimension() * su.getField().getDimension();
         int maxPossibleOffset = (currentFieldPixelSize / 10) * 8; //going left the offset is positive, so possible offsets are lower than this value
@@ -269,6 +274,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         simulationDisplay.updateFieldDisplayArea();
     }
 
+    //center the displayed simulation field in the center of the display area
     public void center() {
         if (verbose) {
             System.out.println("Center pressed");
@@ -282,6 +288,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         simulationDisplay.updateFieldDisplayArea();
     }
 
+    //zooming method taking care of repositioning
     public void zoomIn() {
         if (verbose) {
             System.out.println("ZoomIn pressed");
@@ -421,6 +428,7 @@ public final class HomeWindow extends JFrame implements ActionListener, ChangeLi
         }
     }
 
+    
     public void antSelected() {
         if (controlPanel.getAntSelectionComboBox().getItemCount() != 0) {
             String selectedAntName = controlPanel.getAntSelectionComboBox().getSelectedItem().toString();
