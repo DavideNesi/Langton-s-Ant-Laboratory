@@ -19,6 +19,7 @@ final class FieldDisplayArea extends JPanel {
     private int drawCellFrameRule = 1;
 
     private int mode = 0;
+    //2 color scheme, one is called jamaica, the other one is called pride
     private static final Color colorScheme1[] = {new Color(2, 153, 84), new Color(2, 153, 84), new Color(242, 245, 0), new Color(242, 245, 0), new Color(1, 1, 1), new Color(1, 1, 1), new Color(242, 245, 0), new Color(242, 245, 0), new Color(2, 153, 84), new Color(2, 153, 84)};
     private static final Color colorScheme2[] = {new Color(247, 0, 0), new Color(247, 0, 0), new Color(247, 148, 0), new Color(247, 148, 0), new Color(247, 247, 0), new Color(247, 247, 0), new Color(0, 148, 0), new Color(0, 148, 0), new Color(0, 0, 247), new Color(0, 0, 247), new Color(0, 198, 148), new Color(0, 198, 148)};
 
