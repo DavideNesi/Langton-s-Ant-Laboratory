@@ -2,12 +2,10 @@ package view;
 
 import javax.swing.*;
 
-
+//this class is just decorative....
 public class TopPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form topTest
-     */
+    
     public TopPanel() {
         initComponents();
     }
